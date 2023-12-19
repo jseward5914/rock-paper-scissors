@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+
+        // Make a function that randomly chooses between rock, paper, or scissors
+            // Start with selecting a random number between 0 and 1.
+            // Assign the random number to a global variable.
+            // Input said global variable into a new function that returns final output.
+            
+var counter = 0;
+
+function playAndTrack() {
+    
+    const winPattern = /win/i;
+    
+    let game = function() {
+        var randomNum = 0;
+       
+        function resultOutput(num) {
+                if (num < 3) {
+                    return "ROCK";
+                } else if (num < 6) {
+                    return "PAPER";
+                } else {
+                    return "SCISSORS";
+                }
+            }
+            
+        function randomizer() {
+            randomNum = Math.floor(Math.random() * 10);
+        }
+
+        function getComputerChoice() {            
+            randomizer();
+            return resultOutput(randomNum);
+        }
+
+        var a = prompt("Rock, Paper, or Scissors?").toUpperCase();
+        var b = getComputerChoice();
+
+        function playRound(playerSelection, computerSelection) {
+            if (playerSelection == computerSelection) {
+                return game();
+            } else if (playerSelection == "ROCK" && computerSelection == "PAPER") {
+                return "You Lose! Paper beats rock";
+            } else if (playerSelection == "ROCK" && computerSelection == "SCISSORS") {
+                return "You win! Rock beats scissors!";
+            } else if (playerSelection == "PAPER" && computerSelection == "ROCK") {
+                return "You win! Paper beats rock!";
+            } else if (playerSelection == "PAPER" && computerSelection == "SCISSORS") {
+                return "You lose! Scissors beats paper!";
+            } else if (playerSelection == "SCISSORS" && computerSelection == "ROCK") {
+                return "You lose! Rock beats scissors!";
+            } else {
+                return "You win! Scissors beats paper!";
+            };
+        };
+
+        return playRound(a, b);
+        //console.log(playRound(prompt("What will it be?").toString, getComputerChoice()));
+        //console.log(prompt("Yes?"));
+
+        
+            //console.log(getComputerChoice());
+    };
+    let gameRun = game();
+    console.log(gameRun);
+    let winResult = winPattern.test(gameRun);
+    
+    if (winResult === true) {
+        counter += 1;
+    } else {
+        counter -= 1;
+    }
+};
+
+function bestOfFive() {
+    playAndTrack();
+    console.log(counter);
+    playAndTrack();
+    console.log(counter);
+    playAndTrack();
+    console.log(counter);
+    playAndTrack();
+    console.log(counter);
+    playAndTrack();
+    console.log(counter);
+
+    if (counter > 0) {
+        alert("You win!");
+    } else if (counter === 0) {
+        alert("It's a tie!");
+    } else {
+        alert("You lose!");
+    }
+}
+    </script>
+
+</body>
+</html>
